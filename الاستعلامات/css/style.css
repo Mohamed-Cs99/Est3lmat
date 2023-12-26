@@ -1,0 +1,19 @@
+body {
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+    font-size: larger;
+}
+
+label {
+    float: right;
+}
+
+.logo img {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.addBtn {
+    float: right;
+    font-weight: 800;
+}

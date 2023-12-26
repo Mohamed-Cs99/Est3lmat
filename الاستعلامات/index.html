@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<head>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>المجلس الطبى العسكرى العام </title>
+</head>
+
+<body>
+    <nav>
+        <div class="container-fluid bg-dark pt-1">
+            <div class="row">
+                <div class="col-md-1 logo ">
+                    <img src="imgs/شعار المجلس الطبي العسكري العام.png" alt="logo">
+                </div>
+                <div class="offset-md-2 col-md-8 ">
+                    <h1 class="text-white ">استعلامات "المجلس الطبى العسكرى العام"</h1>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <!-- <h1 class="bg-dark py-2 text-center text-white">استعلامات الضباط "المجلس الطبى العسكرى العام"</h1> -->
+
+        <div class="myForm w-75 py-5">
+            <div class="form-group">
+                <label for="name">الاسم:</label>
+                <input type="text" id="name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="id">الرقم العسكرى:</label>
+                <input type="number" id="id" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="degree">الرتبه:</label>
+                <select id="degree" class="form-control py-1">
+                    <option value="" selected>اختر الرتبه</option>
+                    <option value="ملازم">ملازم</option>
+                    <option value="ملازم اول">ملازم اول</option>
+                    <option value="نقيب">نقيب</option>
+                    <option value="رائد">رائد</option>
+                    <option value="مقدم">مقدم</option>
+                    <option value="عقيد">عقيد</option>
+                    <option value="عميد">عميد</option>
+                    <option value="لواء">لواء</option>
+                </select>
+            </div>
+
+            <div class="form-group py-2">
+                <label for="type">نوع التصديق :</label>
+                <select id="type" class="form-control py-1">
+                    <option value="" selected>اختار نوع التصديق </option>
+                    <option value="خ طب">خ طب</option>
+                    <option value="تعيمات رئيس اركان">تعيمات رئيس اركان </option>
+                    <option value="اوامر مدير سلاح">اوامر مدير سلاح</option>
+                    <option value="اوامر مدير شئون ظباط">اوامر مدير شئون ظباط</option>
+                    <option value="اوامر مدير هيئة شئون ماليه">اوامر مدير هيئة شئون ماليه</option>
+                    <option value="غير لائق تربيه">غير لائق تربيه</option>
+                    <option value="غير لائق بعثه">غير لائق بعثه</option>
+                    <option value="غير لائق دورى">غير لائق دورى</option>
+                    <option value="تصديق جراحه">تصديق جراحه</option>
+                </select>
+            </div>
+            <div id="target" class="hidden d-none">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lagnaType"> نوع اللجنه :</label>
+                                <input type="text" id="lagnaType" class="form-control" required>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="hospitalName"> اسم المستشفى :</label>
+                                <input type="text" id="hospitalName" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="diagnosis"> التشخيص :</label>
+                    <textarea class="form-control" id="diagnosis" cols="30" rows="3"></textarea>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="dt">تاريخ التصديق :</label>
+                <input type="date" id="dt" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="notes">ملاحظات:</label>
+                <textarea class="form-control" id="notes" cols="30" rows="3"></textarea>
+            </div>
+            <button class="btn btn-outline-info addBtn my-2" id="addButton">اضافه</button>
+        </div>
+        <div class="w-50 m-auto py-5 pl-5">
+            <input onkeyup="search(this.value)" type="number" id="search" class="form-control"
+                placeholder="بحث بالرقم العسكرى .....">
+        </div>
+
+
+    </div>
+
+    <table class="table table-bordered text-center">
+        <thead>
+            <th>م</th>
+            <th>الاسم</th>
+            <th>الرقم العسكرى</th>
+            <th>الرتبه</th>
+            <th>نوع التصديق</th>
+            <th>تاريخ التصديق </th>
+            <th>الملاحظات</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+        </thead>
+        <tbody id="demo">
+
+        </tbody>
+    </table>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
