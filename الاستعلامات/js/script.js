@@ -104,11 +104,19 @@ function deleteRow(indx) {
 let neededIndx;
 function updateRow(indx) {
     neededIndx = indx;
-    console.log(neededIndx);
     offname.value = officers[indx].name;
     id.value = officers[indx].id;
     degree.value = officers[indx].degree;
     type.value = officers[indx].type;
+    if(type.value=='تصديق جراحه')
+    {
+        target.classList.remove("d-none");
+        target.classList.add("d-block");
+    }
+    else if(type.value!='تصديق جراحه'){
+        target.classList.remove("d-block");
+        target.classList.add("d-none");
+    }
     date.value = officers[indx].date;
     notes.value = officers[indx].notes;
 
@@ -173,3 +181,8 @@ else
     target.classList.add("d-none");
 }
 })
+
+function showList() {
+    const list = document.getElementById('list');
+    list.classList.toggle('d-none');
+}
