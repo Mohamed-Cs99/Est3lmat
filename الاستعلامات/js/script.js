@@ -4,13 +4,16 @@ let degree = document.getElementById("degree");
 let type = document.getElementById("type");
 let date = document.getElementById("dt");
 let notes = document.getElementById("notes");
-
+let lagnaType = document.getElementById("lagnaType");
+let hospitalName = document.getElementById("hospitalName");
+let diagnosis = document.getElementById("diagnosis");
 let addButton = document.getElementById("addButton");
 
 let officers;
-if (localStorage.getItem("MaherkoDb" == null)) {
-    officers = [];
+if (localStorage.getItem("MaherkoDb") == null) {
+    officers = []; 
 }
+
 else {
     officers = JSON.parse(localStorage.getItem("MaherkoDb"));
     displayData();
@@ -28,6 +31,9 @@ function addNewInquiry() {
             id: id.value,
             degree: degree.value,
             type: type.value,
+            lagnaType: lagnaType.value,
+            hospitalName: hospitalName.value,
+            diagnosis: diagnosis.value,
             date: date.value,
             notes: notes.value
         }
@@ -39,6 +45,8 @@ function addNewInquiry() {
     }
 
 }
+
+
 
 function displayData() {
     let bx = ``;
@@ -64,8 +72,11 @@ function displayData() {
 function clr() {
     offname.value = "";
     id.value = "";
-    degree.value="";
-    type.value="";
+    degree.value = "";
+    type.value = "";
+    lagnaType.value=""; 
+    hospitalName.value=""; 
+    diagnosis.value="";
     date.value = "";
     notes.value = "";
 }
@@ -80,7 +91,7 @@ function search(term) {
                         <td>${i + 1}</td>
                         <td>${officers[i].name}</td>
                         <td>${officers[i].id}</td>
-                        <td> ${officers[i].degree}</td>
+                        <td>${officers[i].degree}</td>
                         <td>${officers[i].type}</td>
                         <td>${officers[i].date}</td>
                         <td>${officers[i].notes}</td>
@@ -108,15 +119,17 @@ function updateRow(indx) {
     id.value = officers[indx].id;
     degree.value = officers[indx].degree;
     type.value = officers[indx].type;
-    if(type.value=='تصديق جراحه')
-    {
+    if (type.value == 'تصديق جراحه') {
         target.classList.remove("d-none");
         target.classList.add("d-block");
     }
-    else if(type.value!='تصديق جراحه'){
+    else if (type.value != 'تصديق جراحه') {
         target.classList.remove("d-block");
         target.classList.add("d-none");
     }
+    lagnaType.value=officers[indx].lagnaType ;
+    hospitalName.value=officers[indx].hospitalName ;
+    diagnosis.value=officers[indx].diagnosis ;
     date.value = officers[indx].date;
     notes.value = officers[indx].notes;
 
@@ -129,6 +142,9 @@ function newData() {
     officers[neededIndx].id = id.value;
     officers[neededIndx].degree = degree.value;
     officers[neededIndx].type = type.value;
+    officers[neededIndx].lagnaType = lagnaType.value;
+    officers[neededIndx].hospitalName = hospitalName.value;
+    officers[neededIndx].diagnosis = diagnosis.value;
     officers[neededIndx].date = date.value;
     officers[neededIndx].notes = notes.value;
     localStorage.setItem("MaherkoDb", JSON.stringify(officers));
@@ -139,15 +155,13 @@ function newData() {
 addButton.addEventListener("click", function () {
     // addNewInquiry()
     if (addButton.innerHTML == 'تعديل') {
-        if(checkEmpty()==true)
-        {
+        if (checkEmpty() == true) {
             alert("برجاء ادخال البيانات بطريقه صحيحه")
         }
-        else 
-        {
+        else {
             newData();
         }
-      
+
 
     }
     else {
@@ -167,22 +181,70 @@ function checkEmpty() {
 }
 
 
-let target =document.getElementById("target"); 
-type.addEventListener("input",function(){
+let target = document.getElementById("target");
+type.addEventListener("input", function () {
 
-if(type.value=='تصديق جراحه')
-{
-    target.classList.remove("d-none");
-    target.classList.add("d-block");
-}
-else 
-{
-    target.classList.remove("d-block");
-    target.classList.add("d-none");
-}
+    if (type.value == 'تصديق جراحه') {
+        target.classList.remove("d-none");
+        target.classList.add("d-block");
+    }
+    else {
+        target.classList.remove("d-block");
+        target.classList.add("d-none");
+    }
 })
 
 function showList() {
     const list = document.getElementById('list');
     list.classList.toggle('d-none');
+}
+
+
+let tableItems = Array.from(document.querySelectorAll("#demo tr"));
+let box = document.getElementById("box");
+
+for (let i = 0; i < tableItems.length; i++) {
+
+
+    tableItems[i].addEventListener("click", function (e) {
+        let indx = tableItems[i].rowIndex - 1;
+        if (officers[indx].type == 'تصديق جراحه') {
+            fillDiv(indx);
+            box.style.display = "flex";
+        }
+    })
+}
+
+
+function closeBox() {
+    box.style.display = "none";
+}
+
+document.addEventListener("keydown", function (e) {
+    if (e.key == "Escape") {
+        closeBox();
+    }
+})
+
+let lbitm = document.getElementById("lbitm");
+
+function fillDiv(ind) {
+    let test = ``;
+    test += `
+    <div class="row">
+                 <div class="col-md-12 text-center">
+                     <h3 >نوع اللجنه:</h3>
+                     <p>${officers[ind].lagnaType}</p>
+                 </div>
+                 <div class="col-md-12 text-center">
+                     <h3 > اسم المستشفى:</h3>
+                     <p>  ${officers[ind].hospitalName}</p>
+                 </div>
+                 <div class="col-md-12 text-center">
+                     <h3 > التشخيص :</h3>
+                     <p> ${officers[ind].diagnosis} </p>
+                 </div>
+                </div>
+    `;
+    lbitm.innerHTML = test;
 }

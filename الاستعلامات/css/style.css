@@ -47,7 +47,22 @@ label {
     right: 0;
     left: 0;
     display: none;
+    justify-content: center;
+    align-items: center;
 }
+.lightBox-item
+{
+    width: 500px;
+    background-color: #363434;
+  
+}
+/* .helper
+{
+    display: flex;
+    justify-content: center;
+} */
+
+
 .w-10{
     width: 10%;
 }
@@ -59,4 +74,9 @@ width:14%;
 #list
 {
     background-color:rgba(0, 0, 0, 0.6);
+}
+
+table td:hover
+{
+    cursor: pointer;
 }
