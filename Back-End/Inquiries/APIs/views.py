@@ -18,3 +18,15 @@ class SinglePersonView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
     permission_classes = [IsAuthenticated]
+
+
+class ApprovalView(generics.ListCreateAPIView):
+    queryset = Approval.objects.all()
+    serializer_class = ApprovalSerailzer
+    permission_classes = [IsAuthenticated]
+
+
+class SingleApprovalView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Approval.objects.all()
+    serializer_class = ApprovalSerailzer
+    permission_classes = [IsAuthenticated]
